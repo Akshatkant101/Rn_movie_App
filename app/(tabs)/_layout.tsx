@@ -7,7 +7,7 @@ const TabIcons = ({focused,icon,title}:any) => {
     if(focused){
     return (
         <ImageBackground className='flex gap-1 bg-purple-400 flex-row overflow-hidden rounded-full  flex-1 justify-center items-center w-full min-w-[10vh] min-h-12  mt-4'>
-            <Image source={icon} className='size-4' />
+            <Image source={icon} tintColor='#111' className='size-4' />
             <Text className=' capitalize'>{title}</Text>
         </ImageBackground>
     )}
@@ -28,7 +28,8 @@ const _layout = () => {
                 alignItems:'center',
             },
             tabBarStyle:{
-                backgroundColor:'#280A3E',    
+                backgroundColor:'#280A3E',
+                borderColor:'#0f0417'    
             }
         }}
         >
