@@ -11,6 +11,7 @@ import {
 import { useRouter } from "expo-router";
 import useFetch from "@/services/useFetch";
 import { fetchMovies } from "@/services/api";
+import MovieCard from "@/components/MovieCard";
 
 export default function Index() {
   const router = useRouter();
@@ -48,23 +49,7 @@ export default function Index() {
             overScrollMode="never"
             columnWrapperStyle={{ justifyContent: "space-between" }}
             renderItem={({ item }) => (
-              <TouchableOpacity
-                className="mb-5 w-[48%]"
-               
-              >
-                <Image
-                  source={{ uri: item.Poster }}
-                  className="w-full h-60 rounded-lg"
-                  resizeMode="cover"
-                />
-                <Text
-                  className="text-white mt-2 text-sm font-semibold"
-                  numberOfLines={1}
-                >
-                  {item.Title}
-                </Text>
-                <Text className="text-gray-300 text-xs">{item.Year}</Text>
-              </TouchableOpacity>
+              <MovieCard movie={item}/>
             )}
           />
         </View>
