@@ -1,11 +1,10 @@
-import Searchbar from "@/components/SearchBarr";
+import Searchbar from '@/components/SearchBarr';
 import { icons } from "@/constants/icons";
 import {
   ActivityIndicator,
   FlatList,
   Image,
   Text,
-  TouchableOpacity,
   View,
 } from "react-native";
 import { useRouter } from "expo-router";
@@ -36,21 +35,18 @@ export default function Index() {
             onPress={() => router.push("/search")}
             placeholder="Search for your movie"
           />
+
           <Text className="text-lg text-white font-bold mt-5 mb-3">
-            Latest Movies
+            Trending Movies
           </Text>
 
           <FlatList
             data={movies}
-            keyExtractor={(item, index) => item.imdbID || index.toString()}
+            keyExtractor={(item) => item.imdbID}
             numColumns={2}
             showsVerticalScrollIndicator={false}
-            persistentScrollbar={false} // Android specific
-            overScrollMode="never"
             columnWrapperStyle={{ justifyContent: "space-between" }}
-            renderItem={({ item }) => (
-              <MovieCard movie={item}/>
-            )}
+            renderItem={({ item }) => <MovieCard movie={item} />}
           />
         </View>
       )}
