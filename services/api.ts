@@ -16,3 +16,28 @@ export const fetchMovies = async ({ query }: { query: string }) => {
   const data = await response.json();
   return data.Search || [];
 };
+
+export const fetchMoviesDetails = async (movieId: string): Promise<MovieDetails> => {
+  try {
+
+    const res = await fetch(`${OMDB_CONFIG.BASE_URL}/?apikey=${OMDB_CONFIG.API_KEY}&i=${movieId}&plot=full`, {
+      method: "GET",
+    });
+    
+    if (!res.ok) 
+      throw new Error(`Failed to fetch movie details: ${res.statusText}`);
+
+    const data = await res.json();
+    
+    // Check if OMDB returned an error
+    if (data.Response === 'False') {
+      throw new Error(data.Error || 'Movie not found');
+    }
+    
+    return data;
+  } 
+  catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
